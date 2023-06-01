@@ -56,3 +56,6 @@ README〜ER図作成：5/31 〆切
 - heroku
 - Google Books API
 - OpenAI API
+
+■画面遷移図
+https://www.figma.com/file/3RinAW89QggztgO5Cv3c8O/Untitled?type=design&node-id=0-1
