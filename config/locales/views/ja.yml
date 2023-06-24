@@ -37,3 +37,10 @@ ja:
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトしました'
+  books:
+    create:
+      success: "本を登録しました"
+    destroy:
+      success: "「%{book[:title]}」を削除しました"
+    search:
+      empty: "検索キーワードが入力されていません"
