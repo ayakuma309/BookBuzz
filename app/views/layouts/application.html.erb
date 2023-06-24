@@ -11,6 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if logged_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+    <%= render 'shared/flash_message' %>
+    <main class="container mx-auto mt-28 px-5">
+      <%= yield %>
+    </main>
   </body>
 </html>
