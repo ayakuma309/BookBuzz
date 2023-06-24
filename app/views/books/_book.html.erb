@@ -1,10 +1,36 @@
-<%= link_to book, method: :get, params: {isbn: book.isbn}, remote: true do %>
-  <div class="rounded p-1 card mr-2">
-    <%= image_tag(book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
-  </div>
-  <%= book.title%><br>
-  <%= book.author%>
-  <p class="mb-2">
+<div data-controller="modal" class="flex justify-center my-20">
+  <button data-action="click->modal#open" class="mb-2 p4">
     <%= simple_format(book.item_caption) %>
-  </p>
-<% end %>
+  </button>
+  <div
+    data-target="modal.container"
+    data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"
+    class="hidden bg-gray-300 bg-opacity-50 fixed inset-0 overflow-y-auto flex items-center justify-center"
+    style="z-index: 9999;"
+  >
+    <div class="max-h-screen w-96 max-w-2lg relative">
+      <div class="bg-white shadow-xl">
+        <div class="p-8">
+          <div class="flex flex-col items-center justify-center">
+            <div class="p-1 mr-2 flex flex-col mr-6">
+              <%= image_tag(book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
+              <%= book.title%><br>
+              <%= book.author%>
+            </div>
+            <div class="w-80">
+              <%= simple_format(book.item_caption) %>
+            </div>
+          </div>
+          <div class="flex justify-end items-center flex-wrap mt-6">
+            <button
+              class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4"
+              data-action="click->modal#close"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
