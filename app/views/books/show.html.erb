@@ -1,0 +1,8 @@
+<div class="rounded p-1 card mr-2">
+  <%= image_tag(@book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
+</div>
+<%= @book.title%><br>
+<%= @book.author%>
+<p class="mb-2">
+  <%= simple_format(@book.item_caption) %>
+</p>
