@@ -45,5 +45,8 @@ module BookBuzz
       g.helper false
       g.test_framework false
     end
+
+    # バリデーション失敗時のfield_with_errorsのdivタグ自動生成を停止
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end
