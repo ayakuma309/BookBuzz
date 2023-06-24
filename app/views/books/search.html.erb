@@ -2,7 +2,6 @@
   <div class="text-center my-3">
     <div class="my-2 font-weight-bold">書籍検索</div>
     <%= f.search_field :search, value: params[:search], placeholder: "検索: 書籍名", class: "w-full p-4 mx-auto text-sm border-sky-400 rounded-lg bg-slate-50 border-2", type: "text" %>
-    <%= f.button "検索", class: "rounded border border-blue-600 bg-blue-600 mr-2 p-1 font-medium text-white hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 mt-auto sm:m-auto md:mx-auto lg:mx-0", data: { disable_with: "送信中..." } %>
   </div>
 <% end %>
 <div class="w-full my-3 flex justify-center">

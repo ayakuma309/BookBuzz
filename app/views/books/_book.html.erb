@@ -31,6 +31,11 @@
             </div>
           </div>
           <div class="flex justify-end items-center flex-wrap mt-6">
+            <%= link_to book, method: :get, params: {isbn: book.isbn}, remote: true, class: "flex items-center" do %>
+              <button class="bg-white text-gray-600 py-2 px-4 mx-2">
+                詳細へ
+              </button>
+            <% end %>
             <button
               class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4"
               data-action="click->modal#close"

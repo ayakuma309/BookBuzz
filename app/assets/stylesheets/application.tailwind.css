@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body{
+  min-height: 150vh;
   background: #f2f2f5;
 }
 .card_book{
