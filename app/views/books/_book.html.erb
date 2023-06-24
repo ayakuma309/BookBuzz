@@ -11,6 +11,14 @@
     <div class="h-4/5 overflow-y-scroll w-96 max-w-2lg relative">
       <div class="bg-gray-100 shadow-xl">
         <div class="p-8">
+          <!-- モーダルの内容 -->
+          <div class="flex justify-end">
+            <button
+              data-action="click->modal#close"
+            >
+              ✖️
+            </button>
+          </div>
           <div class="flex flex-col items-center justify-center">
             <div class="p-1 flex flex-col mr-6 mb-3">
               <a
@@ -32,16 +40,10 @@
           </div>
           <div class="flex justify-end items-center flex-wrap mt-6">
             <%= link_to book, method: :get, params: {isbn: book.isbn}, remote: true, class: "flex items-center" do %>
-              <button class="bg-white text-gray-600 py-2 px-4 mx-2">
+              <button class="bg-gray-500 text-white py-2 px-4 mx-2">
                 詳細へ
               </button>
             <% end %>
-            <button
-              class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4"
-              data-action="click->modal#close"
-            >
-              Close
-            </button>
           </div>
         </div>
       </div>
