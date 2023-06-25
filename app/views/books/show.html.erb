@@ -9,19 +9,21 @@
   </div>
 </a>
 
-<h1 class="font-bold text-3xl mt-6"><%= @book.title%></h1><br>
-<div class="flex items-center mb-2  p-3 card_book card_height">
+<div class="flex justify-between items-end mb-3" >
+  <h1 class="font-bold text-3xl mt-6"><%= @book.title%></h1><br>
+  <%= link_to @book.item_url, target: '_blank' do %>
+    <span class="text-sm mt-1">楽天へはこちら</span>
+  <% end %>
+</div>
+<div class="flex items-center p-3 card_book card_height">
   <%= simple_format(@book.item_caption) %>
 </div>
-
-<p class="mb-2 flex justify-center text-2xl font-semibold font-mono mt-10">
+<p class="mb-3 flex justify-center text-2xl font-semibold font-mono mt-10">
   <%= @book.author%>さんの他のおすすめ本
 </p>
 
 <div class="flex flex-wrap justify-center">
-  <% @books.each do |book|%>
-    <div class="flex flex-col">
-      <%= image_tag(book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
-    </div>
+  <% @books.each do |book| %>
+    <%= render "recommend_books", book: book %>
   <% end %>
 </div>

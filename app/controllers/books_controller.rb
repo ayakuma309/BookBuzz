@@ -7,7 +7,12 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by(isbn: params[:isbn])
-    @books = RakutenWebService::Books::Book.search(author: @book.author)
+    if @book.author
+      @books = RakutenWebService::Books::Book.search(author: @book.author)
+    else
+      @books = []
+      flash.now[:notice] = t('books.search.empty')
+    end
   end
 
   def new
