@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by(isbn: params[:isbn])
+    @books = RakutenWebService::Books::Book.search(author: @book.author)
   end
 
   def new
