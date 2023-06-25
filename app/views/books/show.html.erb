@@ -1,8 +1,29 @@
-<div class="rounded p-1 card mr-2">
-  <%= image_tag(@book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
+<a
+  class="book-container"
+  href=""
+  target="_blank"
+  rel="noreferrer noopener"
+>
+  <div class="book">
+    <%= image_tag(@book.large_image_url) %>
+  </div>
+</a>
+
+<div class="flex justify-between items-end mb-3" >
+  <h1 class="font-bold text-3xl mt-6"><%= @book.title%></h1><br>
+  <%= link_to @book.item_url, target: '_blank' do %>
+    <span class="text-sm mt-1">楽天へはこちら</span>
+  <% end %>
 </div>
-<%= @book.title%><br>
-<%= @book.author%>
-<p class="mb-2">
+<div class="flex items-center p-3 card_book card_height">
   <%= simple_format(@book.item_caption) %>
+</div>
+<p class="mb-3 flex justify-center text-2xl font-semibold font-mono mt-10">
+  <%= @book.author%>先生の他のおすすめ本
 </p>
+
+<div class="flex flex-wrap justify-center">
+  <% @books.each do |book| %>
+    <%= render "recommend_books", book: book %>
+  <% end %>
+</div>

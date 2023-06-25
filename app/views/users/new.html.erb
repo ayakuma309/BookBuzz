@@ -1,5 +1,5 @@
 <div class="w-full max-w-xs mx-auto">
-  <h1><%=t('defaults.register') %></h1>
+  <h1 class="text-center mb-3 text-lg font-mono font-bold"><%=t('users.new.title') %></h1>
   <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <%= form_with model: @user, local: true do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
@@ -20,7 +20,8 @@
         <%= f.password_field :password_confirmation, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline',placeholder: "******"%>
       </div>
       <div class="flex items-center justify-between">
-        <%= f.submit  t('defaults.register') , class:"bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"%>
+        <%= f.submit  t('defaults.register') , class:"bg-gray-600 text-white hover:bg-gray-600 hover:text-white  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"%>
+        <%= link_to t('user_sessions.new.title') ,login_path , class: 'inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-900' %>
       </div>
     <% end %>
   </div>

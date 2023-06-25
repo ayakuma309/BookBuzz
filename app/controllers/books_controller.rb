@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  skip_before_action :require_login, only: %i[index]
+  skip_before_action :require_login, only: %i[index  genres_search]
 
   def index
     @books = Book.order('RANDOM()').limit(3)
@@ -7,6 +7,12 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by(isbn: params[:isbn])
+    if @book.author
+      @books = RakutenWebService::Books::Book.search(author: @book.author)
+    else
+      @books = []
+      flash.now[:notice] = t('books.search.empty')
+    end
   end
 
   def new
@@ -35,6 +41,16 @@ class BooksController < ApplicationController
   def search
     if params[:search]
       @books = RakutenWebService::Books::Book.search(title: params[:search])
+    else
+      @books = []
+      flash.now[:notice] = t('books.search.empty')
+    end
+  end
+
+  def genres_search
+    if params[:genre_id]
+      page_number = rand(1..5)
+      @books = RakutenWebService::Books::Book.search(booksGenreId: params[:genre_id], page: page_number)
     else
       @books = []
       flash.now[:notice] = t('books.search.empty')

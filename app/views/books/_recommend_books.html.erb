@@ -1,6 +1,10 @@
 <div data-controller="modal">
-  <button data-action="click->modal#open" class="m-5 border p-3 w-full card_book card_height">
-    <%= simple_format(book.item_caption) %>
+  <button data-action="click->modal#open">
+    <div class="flex flex-wrap justify-center">
+      <div class="flex flex-col">
+        <%= image_tag(book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
+      </div>
+    </div>
   </button>
   <div
     data-target="modal.container"
@@ -38,15 +42,6 @@
               <%= simple_format(book.item_caption) %>
             </div>
           </div>
-          <% if current_user %>
-            <div class="flex justify-end items-center flex-wrap mt-6">
-              <%= link_to book, method: :get, params: {isbn: book.isbn}, remote: true, class: "flex items-center" do %>
-                <button class="bg-gray-500 text-white py-2 px-4 mx-2">
-                  詳細へ
-                </button>
-              <% end %>
-            </div>
-          <% end %>
         </div>
       </div>
     </div>
