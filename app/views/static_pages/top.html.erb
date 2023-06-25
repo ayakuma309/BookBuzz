@@ -1,2 +1,17 @@
-<h1>StaticPages#top</h1>
-<p>Find me in app/views/static_pages/top.html.erb</p>
+<div class="container mx-auto px-4">
+  <div class="my-8">
+    <h1 class="text-3xl font-bold mb-2">ジャンルから探す</h1>
+    <div class="flex flex-wrap mt-5">
+      <% @genres&.each do |genre| %>
+        <p class="m-1 outline p-4 rounded-md hover:bg-slate-600 hover:text-white"><%= link_to genre.params["booksGenreName"], genres_search_books_path(genre_id: genre.params["booksGenreId"]) %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h1 class="text-3xl font-bold">本日のおすすめから探す</h1>
+    <%= link_to books_path, class: "inline-block mt-5" do %>
+      <p class="m-1 outline p-4 rounded-md hover:bg-slate-600 hover:text-white">ランダム3選をあなたに贈ります</p>
+    <% end %>
+  </div>
+</div>
