@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :books, param: :isbn do
     collection do
       get :search
+      get :genres_search
     end
   end
 end

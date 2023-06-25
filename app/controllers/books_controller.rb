@@ -49,7 +49,8 @@ class BooksController < ApplicationController
 
   def genres_search
     if params[:genre_id]
-      @books = RakutenWebService::Books::Book.search(booksGenreId: params[:genre_id])
+      page_number = rand(1..5)
+      @books = RakutenWebService::Books::Book.search(booksGenreId: params[:genre_id], page: page_number)
     else
       @books = []
       flash.now[:notice] = t('books.search.empty')
