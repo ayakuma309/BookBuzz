@@ -1,5 +1,5 @@
 <div data-controller="modal">
-  <button data-action="click->modal#open" class="m-2 border p-3 w-80 card_book">
+  <button data-action="click->modal#open" class="m-5 border p-3 w-full card_book">
     <%= simple_format(book.item_caption) %>
   </button>
   <div
@@ -8,7 +8,7 @@
     class="hidden bg-gray-300 bg-opacity-50 fixed inset-0 overflow-y-auto flex items-center justify-center"
     style="z-index: 9999;"
   >
-    <div class="h-4/5 overflow-y-scroll w-96 max-w-2lg relative">
+    <div class="h-4/5 overflow-y-scroll w-96 max-w-2lg relative rounded-md">
       <div class="bg-gray-100 shadow-xl">
         <div class="p-8">
           <!-- モーダルの内容 -->

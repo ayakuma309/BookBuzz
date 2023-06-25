@@ -6,12 +6,15 @@ body{
   min-height: 150vh;
   background: #f2f2f5;
 }
+
+
+/* 本のカード */
 .card_book{
   border-radius: 13px;
   background: #f2f2f5;
   box-shadow:  6px 6px 12px #dfdfe1,
               -6px -6px 12px #ffffff;
-  height: 300px;
+  height: 200px;
   overflow-y: scroll;
 }
 .book-container {

@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   skip_before_action :require_login, only: %i[index]
 
   def index
-    @books = Book.all
+    @books = Book.order("RANDOM()").limit(3)
   end
 
   def show

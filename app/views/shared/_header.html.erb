@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="navbar-start">
       <%=link_to  root_path, class: "btn btn-ghost flex" do%>
-        LOGO
+        Book Buzz
       <% end %>
     </div>
     <div class="navbar-end">
@@ -12,7 +12,7 @@
         </label>
         <ul tabindex="0" class="menu menu-conpact dropdown-content p-2 shadow bg-base-100 rounded-box w-52 text-left">
           <li><%= link_to 'TOP', root_path %></li>
-          <li><%= link_to '本の一覧', books_path %></li>
+          <li><%= link_to '本日のおすすめ', books_path %></li>
           <li><%= link_to '本の登録', search_books_path %></li>
           <li><%= button_to (t 'defaults.logout'), logout_path, class: 'dropdown-item', method: :delete %></li>
         </ul>
