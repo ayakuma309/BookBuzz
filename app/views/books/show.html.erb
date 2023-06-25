@@ -1,8 +1,27 @@
-<div class="rounded p-1 card mr-2">
-  <%= image_tag(@book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
-</div>
-<%= @book.title%><br>
-<%= @book.author%>
-<p class="mb-2">
+<a
+  class="book-container"
+  href=""
+  target="_blank"
+  rel="noreferrer noopener"
+>
+  <div class="book">
+    <%= image_tag(@book.large_image_url) %>
+  </div>
+</a>
+
+<h1 class="font-bold text-3xl mt-6"><%= @book.title%></h1><br>
+<div class="flex items-center mb-2  p-3 card_book card_height">
   <%= simple_format(@book.item_caption) %>
+</div>
+
+<p class="mb-2 flex justify-center text-2xl font-semibold font-mono mt-10">
+  <%= @book.author%>さんの他のおすすめ本
 </p>
+
+<div class="flex flex-wrap justify-center">
+  <% @books.each do |book|%>
+    <div class="flex flex-col">
+      <%= image_tag(book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
+    </div>
+  <% end %>
+</div>

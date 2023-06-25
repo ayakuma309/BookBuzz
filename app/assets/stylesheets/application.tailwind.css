@@ -14,6 +14,8 @@ body{
   background: #f2f2f5;
   box-shadow:  6px 6px 12px #dfdfe1,
               -6px -6px 12px #ffffff;
+}
+.card_height{
   height: 200px;
   overflow-y: scroll;
 }
