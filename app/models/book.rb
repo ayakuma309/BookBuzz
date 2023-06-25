@@ -16,4 +16,9 @@ class Book < ApplicationRecord
   self.primary_key = :isbn
 
   validates :isbn, uniqueness: { scope: :isbn }
+
+  def self.generate_twitter_links(books)
+    encoded_share_text = books.map { |book| "#{book.author} : #{book.title}%0a" }
+    encoded_share_text.join.html_safe
+  end
 end

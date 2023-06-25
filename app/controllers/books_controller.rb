@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.order('RANDOM()').limit(3)
+    @twitter_text = Book.generate_twitter_links(@books)
   end
 
   def show
