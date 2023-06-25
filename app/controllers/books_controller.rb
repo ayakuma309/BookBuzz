@@ -47,6 +47,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def genres_search
+    if params[:genre_id]
+      @books = RakutenWebService::Books::Book.search(booksGenreId: params[:genre_id])
+    else
+      @books = []
+      flash.now[:notice] = t('books.search.empty')
+    end
+  end
+
   private
   def book_params
     params.permit(:title, :author, :sales_date, :large_image_url, :item_url, :isbn, :item_caption)
