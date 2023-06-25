@@ -1,0 +1,42 @@
+<div>
+  <% @books&.each do |book| %>
+    <div class= "my-3">
+      <div class="outline card p-5 flex">
+        <div class="rounded p-1 card  mx-auto">
+          <%= image_tag(book.large_image_url, style: "width: 150px; height: 187px; display: inline-block;") %>
+          <p class="text-md font-bold">
+            <%= book.title %>
+          </p>
+          <p class="text-sm">著者: <%= book.author %></p>
+        </div>
+        <div class="rounded p-3 grid gap-2">
+          <div class="prose max-w-none w-96">
+            <p class="mb-2">
+              <%= simple_format(book.item_caption) %>
+            </p>
+          </div>
+          <div class="mx-auto">
+            <% if Book.exists?(isbn: book.isbn) %>
+              <%= link_to book_path(book.isbn) do %>
+                <span class="mt-1">登録済</span>
+              <% end %>
+            <% else %>
+              <div>
+                <%= form_with model: @book, url: books_path, local: false, data: { controller: "books" } do |f| %>
+                  <%= f.hidden_field :isbn, value: book.isbn %>
+                  <%= f.hidden_field :title, value: book.title %>
+                  <%= f.hidden_field :author, value: book.author %>
+                  <%= f.hidden_field :sales_date, value: book.sales_date %>
+                  <%= f.hidden_field :large_image_url, value: book.large_image_url %>
+                  <%= f.hidden_field :item_url, value: book.item_url %>
+                  <%= f.hidden_field :item_caption, value: book.item_caption %>
+                  <%= f.button "登録", class: "rounded border border-blue-600 bg-blue-600 mr-2 p-1 font-medium text-white hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 mt-auto sm:m-auto md:mx-auto lg:mx-0", data: { disable_with: "送信中..." } %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

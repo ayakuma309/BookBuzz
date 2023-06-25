@@ -1,0 +1,9 @@
+<%=form_with url: search_books_path ,method: :get do |f|%>
+  <div class="text-center my-3">
+    <div class="my-2 font-weight-bold">書籍検索</div>
+    <%= f.search_field :search, value: params[:search], placeholder: "検索: 書籍名", class: "w-full p-4 mx-auto text-sm border-sky-400 rounded-lg bg-slate-50 border-2", type: "text" %>
+  </div>
+<% end %>
+<div class="w-full my-3 flex justify-center">
+  <%=render "book_result" %>
+</div>

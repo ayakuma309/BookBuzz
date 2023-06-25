@@ -1,0 +1,52 @@
+<div data-controller="modal">
+  <button data-action="click->modal#open" class="m-5 border p-3 w-full card_book">
+    <%= simple_format(book.item_caption) %>
+  </button>
+  <div
+    data-target="modal.container"
+    data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"
+    class="hidden bg-gray-300 bg-opacity-50 fixed inset-0 overflow-y-auto flex items-center justify-center"
+    style="z-index: 9999;"
+  >
+    <div class="h-4/5 overflow-y-scroll w-96 max-w-2lg relative rounded-md">
+      <div class="bg-gray-100 shadow-xl">
+        <div class="p-8">
+          <!-- モーダルの内容 -->
+          <div class="flex justify-end">
+            <button
+              data-action="click->modal#close"
+            >
+              ✖️
+            </button>
+          </div>
+          <div class="flex flex-col items-center justify-center">
+            <div class="p-1 flex flex-col mr-6 mb-3">
+              <a
+                class="book-container"
+                href=""
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <div class="book">
+                  <%= image_tag(book.large_image_url) %>
+                </div>
+              </a>
+              <div class="text-2xl font-bold mt-7"><%= book.title%></div>
+              <%= book.author%>
+            </div>
+            <div class="w-80">
+              <%= simple_format(book.item_caption) %>
+            </div>
+          </div>
+          <div class="flex justify-end items-center flex-wrap mt-6">
+            <%= link_to book, method: :get, params: {isbn: book.isbn}, remote: true, class: "flex items-center" do %>
+              <button class="bg-gray-500 text-white py-2 px-4 mx-2">
+                詳細へ
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
