@@ -15,6 +15,8 @@
 class Book < ApplicationRecord
   self.primary_key = :isbn
 
+  has_many :bookmarks, foreign_key: 'book_isbn', primary_key: 'isbn', dependent: :destroy
+
   validates :isbn, uniqueness: { scope: :isbn }
 
   def self.generate_twitter_links(books)
