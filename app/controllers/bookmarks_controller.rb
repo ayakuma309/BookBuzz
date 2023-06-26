@@ -1,4 +1,7 @@
 class BookmarksController < ApplicationController
+  def index
+    @bookmark_books = current_user.bookmarks.includes(:book)
+  end
 
   def create
     @book = Book.find_by(isbn: params[:book_isbn])

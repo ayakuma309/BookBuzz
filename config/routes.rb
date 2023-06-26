@@ -18,4 +18,5 @@ Rails.application.routes.draw do
     end
     resource :bookmark, only: %i[create destroy]
   end
+  resources :bookmarks, only: %i[index]
 end
