@@ -38,9 +38,11 @@
                   <div class="text-2xl font-bold mt-7"><%= book.title%></div>
                   <%= book.author%>
                 </div>
-                <div class="flex items-center">
-                  <%= render 'bookmark_button', { book: book } %>
-                </div>
+                <% if current_user %>
+                  <div class="flex items-center">
+                    <%= render 'bookmark_button', { book: book } %>
+                  </div>
+                <% end %>
               </div>
               <%= simple_format(book.item_caption) %>
             </div>
