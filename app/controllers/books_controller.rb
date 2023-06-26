@@ -48,6 +48,10 @@ class BooksController < ApplicationController
     end
   end
 
+  def bookmarks
+    @bookmark_books = current_user.bookmarks.includes(:book)
+  end
+
   def genres_search
     if params[:genre_id]
       page_number = rand(1..5)
