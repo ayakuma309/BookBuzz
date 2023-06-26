@@ -14,6 +14,7 @@
           <li><%= link_to 'TOP', root_path %></li>
           <li><%= link_to '本日のおすすめ', books_path %></li>
           <li><%= link_to '本の登録', search_books_path %></li>
+          <li><%= link_to 'ブックマークリスト', bookmarks_path %></li>
           <li><%= button_to (t 'defaults.logout'), logout_path, class: 'dropdown-item', method: :delete %></li>
         </ul>
       </div>

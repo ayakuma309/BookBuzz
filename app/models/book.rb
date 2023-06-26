@@ -25,6 +25,6 @@ class Book < ApplicationRecord
   end
 
   def bookmark?(user)
-    bookmarks.include?(user)
+    bookmarks.where(user_id: user.id).exists?
   end
 end
