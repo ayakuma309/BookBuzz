@@ -1,0 +1,13 @@
+<div class="flex justify-center mb-5 p-4 card_book">
+  <div class="mr-5 shadow-md">
+    <%= image_tag(bookmark_books.book.large_image_url) %>
+  </div>
+  <div class="w-96">
+    <div class="flex justify-between items-center">
+      <%= bookmark_books.book.title%><br>
+      <%= bookmark_books.book.author%>
+      <%= render 'bookmark_button', { book: bookmark_books.book } %>
+    </div>
+    <%= simple_format(bookmark_books.book.item_caption) %>
+  </div>
+</div>

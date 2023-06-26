@@ -1,10 +1,3 @@
-<% @bookmark_books.each do |bookmark|%>
-  <%= bookmark.book.title%><br>
-  <div class="book">
-    <%= image_tag(bookmark.book.large_image_url) %>
-  </div>
-  <%= bookmark.book.author%>
-  <%= simple_format(bookmark.book.item_caption) %>
-
-  <%= render 'bookmark_button', { book: bookmark.book } %>
-<% end %>
+<div class="w-full my-3 flex flex-col justify-center">
+  <%= render partial: "bookmark_books", collection: @bookmark_books %>
+</div>
