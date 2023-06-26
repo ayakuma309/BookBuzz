@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     collection do
       get :search
       get :genres_search
+      get :bookmarks
     end
     resource :bookmark, only: %i[create destroy]
   end
-  resources :bookmarks, only: %i[index]
 end
