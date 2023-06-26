@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   skip_before_action :require_login, only: %i[index  genres_search]
 
   def index
-    @books = Book.order('RANDOM()').limit(3)
+    @books = Book.includes(:bookmarks).order('RANDOM()').limit(3)
     @twitter_text = Book.generate_twitter_links(@books)
   end
 

@@ -23,4 +23,8 @@ class Book < ApplicationRecord
     encoded_share_text = books.map { |book| "#{book.author} : #{book.title}%0a" }
     encoded_share_text.join.html_safe
   end
+
+  def bookmark?(user)
+    bookmarks.include?(user)
+  end
 end
