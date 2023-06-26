@@ -10,6 +10,7 @@ body{
 
 /* 本のカード */
 .card_book{
+  margin: 10px auto;
   border-radius: 13px;
   background: #f2f2f5;
   box-shadow:  6px 6px 12px #dfdfe1,
