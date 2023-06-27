@@ -3,15 +3,17 @@
     <h1 class="text-3xl font-bold mb-2">ジャンルから探す</h1>
     <div class="flex flex-wrap mt-5">
       <% @genres&.each do |genre| %>
-        <p class="m-1 select_button"><%= link_to genre.params["booksGenreName"], genres_search_books_path(genre_id: genre.params["booksGenreId"]) %></p>
+        <%= link_to genres_search_books_path(genre_id: genre.params["booksGenreId"]) do %>
+          <p class="m-1 select_button"><%=  genre.params["booksGenreName"] %></p>
+        <% end %>
       <% end %>
     </div>
   </div>
 
   <div class="mt-8">
     <h1 class="text-3xl font-bold">本日のおすすめから探す</h1>
-    <%= link_to books_path, class: "inline-block mt-5" do %>
-      <p class="m-1 select_button">ランダム3選をあなたに贈ります</p>
+    <%= link_to books_path, class: "inline-block mt-5 select_button" do %>
+      <p class="m-1">ランダム3選をあなたに贈ります</p>
     <% end %>
   </div>
 </div>

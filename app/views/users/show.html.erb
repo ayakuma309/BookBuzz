@@ -1,0 +1,32 @@
+<h1 class='text-3xl font-bold font-mono text-center items-center p-2'><%= t('.title') %></h1>
+<div class="container mx-auto flex justify-center items-center text-center">
+  <div class='p-3'>
+    <div class="card lg:card  shadow-xl items-center text-center">
+      <div class="card-body">
+        <h1 class="card-title text-3xl">
+          <div class="card-actions justify-end">
+          <%= @user.name %>
+        </h1>
+          <div class='p-2'>
+            <div class='sm:col-span-2 p-2 text-center'>
+              <%= link_to  bookmarks_books_path, class: 'btn btn-wide bg-gray-600', style: 'color: white' do %>
+                <div class='text-lg font-bold'>ブックマークリスト</div>
+              <% end %>
+            </div>
+          </div>
+          <div class='p-2'>
+            <div class='sm:col-span-2 p-2 text-center'>
+              <%= link_to user_path(current_user), data: { turbo_method: :delete, turbo_confirm: '本当に退会しますか?　※この操作は取り消せません。' }, class: 'btn btn-wide bg-red-600', style: 'color: white' do %>
+                <div class='text-lg font-bold'>退会する</div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='container mx-auto flex justify-center items-center p-3'>
+  <%= link_to '戻る', root_path, class: 'btn btn-sm outline' %>
+</div>
+

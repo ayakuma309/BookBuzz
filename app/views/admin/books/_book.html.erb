@@ -1,0 +1,15 @@
+<tr>
+  <td><%= image_tag(book.large_image_url) %></td>
+  <td><%= book.title %></td>
+  <td>
+    <%= book.author %>
+  </td>
+  <td>
+    <%= link_to "削除", admin_book_path(book.isbn), data: { turbo_method: :delete , turbo_confirm: '削除しますか？'} %>
+  </td>
+  <td>
+    <%if book.bookmarks.exists?%>
+      <%= book.bookmarks.count %>
+    <% end %>
+  </td>
+</tr>

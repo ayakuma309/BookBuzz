@@ -6,6 +6,7 @@
 #  crypted_password :string
 #  email            :string           not null
 #  name             :string           not null
+#  role             :integer          default(0), not null
 #  salt             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -25,4 +26,6 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true, length: { maximum: 255 }
+
+  enum role: { general: 0, admin: 1 }
 end

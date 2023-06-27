@@ -1,22 +1,25 @@
-<a
-  class="book-container"
-  href=""
-  target="_blank"
-  rel="noreferrer noopener"
->
+<div class="book-container">
   <div class="book">
     <%= image_tag(@book.large_image_url) %>
   </div>
-</a>
-
-<div class="flex justify-between items-end mb-3" >
-  <h1 class="font-bold text-3xl mt-6"><%= @book.title%></h1><br>
-  <%= link_to @book.item_url, target: '_blank' do %>
-    <span class="text-sm mt-1">楽天へはこちら</span>
-  <% end %>
 </div>
-<div class="flex items-center p-3 card_book card_height">
+
+<div class="flex items-end justify-between mb-3" >
+  <div class="font-bold text-3xl mt-6">
+    <%= @book.title%>
+  </div><br>
+  <div>
+    <%= link_to @book.item_url do %>
+      <span class="text-sm mt-1">楽天へはこちら</span>
+    <% end %>
+  </div>
+</div>
+
+<div class="flex items-center p-4 card_book card_height">
   <%= simple_format(@book.item_caption) %>
+  <div>
+    <%= render 'bookmark_button', { book: @book } %>
+  </div>
 </div>
 <p class="mb-3 flex justify-center text-2xl font-semibold font-mono mt-10">
   <%= @book.author%>先生の他のおすすめ本
