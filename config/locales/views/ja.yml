@@ -12,15 +12,26 @@ ja:
     delete: '削除'
 
     message:
-      updated: "%{item}を更新しました"
-      not_updated: "%{item}を更新できませんでした"
-      deleted: "%{item}を削除しました"
+      updated: '%{item}を更新しました'
+      not_updated: '%{item}を更新できませんでした'
+      deleted: '%{item}を削除しました'
       delete_confirm: '削除しますか？'
       not_authorized: '権限がありません'
       require_login: 'ログインしてください'
-      created: "%{item}を作成しました"
-      not_created: "%{item}を作成できませんでした"
+      created: '%{item}を作成しました'
+      not_created: '%{item}を作成できませんでした'
+  static_pages:
+    top:
+      recommend: '本日のおすすめ'
+      create_book: '本の登録'
+      bookmarks: 'ブックマークリスト'
+    privacy:
+      title: 'プライバシーポリシー'
+    terms:
+      title: '利用規約'
   users:
+    show:
+      title: 'マイページ'
     new:
       title: 'ユーザー登録'
       to_login_page: 'ログインページへ'
@@ -39,8 +50,8 @@ ja:
       success: 'ログアウトしました'
   books:
     create:
-      success: "本を登録しました"
+      success: '本を登録しました'
     destroy:
-      success: "「%{book[:title]}」を削除しました"
+      success: '「%{book[:title]}」を削除しました'
     search:
-      empty: "検索キーワードが入力されていません"
+      empty: '検索キーワードが入力されていません'
