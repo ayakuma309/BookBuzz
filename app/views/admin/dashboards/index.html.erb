@@ -1,5 +1,5 @@
-<div class="content-wrapper">
-  <div class="row">
-    <p>ダッシュボードです</p>
-  </div>
+<div class="my-3">
+  <%= link_to '本一覧',  admin_books_path, class: "btn btn-ghost flex text-xl"%>
+  <%=link_to  'マスクした本たち' ,root_path, class: "btn btn-ghost flex text-xl" %>
+  <%= link_to (t 'defaults.logout'), admin_logout_path, class: "btn btn-ghost flex text-xl", data: { turbo_method: :delete , turbo_confirm: 'ログアウトしますか?'} %>
 </div>
