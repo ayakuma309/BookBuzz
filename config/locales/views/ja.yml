@@ -1,6 +1,7 @@
 ja:
   defaults:
     login: 'ログイン'
+    admin_login: '管理者ログイン'
     register: '登録'
     logout: 'ログアウト'
     post: '投稿'
@@ -55,3 +56,10 @@ ja:
       success: '「%{book[:title]}」を削除しました'
     search:
       empty: '検索キーワードが入力されていません'
+  admin:
+    user_sessions:
+      create:
+        success: 'ログインしました'
+        fail: 'ログインに失敗しました'
+      destroy:
+        success: 'ログアウトしました'
