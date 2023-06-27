@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_023034) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_081112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "book_tags", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "book_isbn", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_isbn"], name: "index_book_tags_on_book_isbn"
+    t.index ["tag_id", "book_isbn"], name: "index_book_tags_on_tag_id_and_book_isbn", unique: true
+    t.index ["tag_id"], name: "index_book_tags_on_tag_id"
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -35,6 +45,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_023034) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -46,6 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_023034) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "book_tags", "books", column: "book_isbn", primary_key: "isbn"
+  add_foreign_key "book_tags", "tags"
   add_foreign_key "bookmarks", "books", column: "book_isbn", primary_key: "isbn"
   add_foreign_key "bookmarks", "users"
 end
