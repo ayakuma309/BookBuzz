@@ -1,0 +1,31 @@
+<div class="container mt-5 mx-auto">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center mb-3">Tag一覧・追加</h2>
+      <%= form_with model: @tag, url: admin_tags_path, local: false do |f| %>
+        <div class="form-group text-center mb-3">
+          <%= f.label :name, "Tag名" %>
+          <%= f.text_field :name, id:"name" %>
+          <%= f.submit "新規登録", class:"btn btn-warning rounded-pill ml-4" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 text-center">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>tag</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tag_table">
+          <%= render @tags %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
