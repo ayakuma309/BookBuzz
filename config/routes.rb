@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 
-  resources :books, param: :isbn do
+  resources :books, param: :isbn , only: %i[index show new create] do
     collection do
       get :search
       get :genres_search
@@ -21,5 +21,7 @@ Rails.application.routes.draw do
     get 'login', to: 'user_sessions#new'
     post 'login', to: 'user_sessions#create'
     delete 'logout', to: 'user_sessions#destroy'
+
+    resources :books, param: :isbn, only: %i[index destroy]
   end
 end

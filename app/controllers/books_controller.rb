@@ -33,11 +33,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def destroy
-    book = Book.find_by(isbn: params[:isbn])
-    book.delete
-    redirect_to books_path, danger: t('books.destroy.success'), status: :see_other
-  end
 
   def search
     if params[:search]
