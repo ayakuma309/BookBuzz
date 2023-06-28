@@ -2,7 +2,7 @@ class Admin::BooksController < Admin::BaseController
   before_action :set_book, only: %i[edit update destroy]
 
   def index
-    @books = Book.all
+    @books = Book.includes(:tags)
   end
 
   def edit; end
