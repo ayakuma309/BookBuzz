@@ -39,4 +39,57 @@ class Book < ApplicationRecord
   def bookmark?(user)
     bookmarks.where(user_id: user.id).exists?
   end
+
+  # ユーザーがブックマークした本のタグを分析し、同じ種類のタグを持つ本を推薦するメソッド
+  def self.recommend_books(user)
+    # ユーザーがブックマークした本の配列を取得
+    bookmarked_books = user.bookmarks.includes(:book).map(&:book)
+    # ブックマークした本のタグの収集（重複を除く）
+    bookmarked_tags = bookmarked_books.flat_map(&:tags).uniq
+
+
+    recommended_books = []
+    all_books = Book.all # 全ての本の取得
+
+    all_books.each do |book|
+      next if bookmarked_books.include?(book) # ブックマークした本は除外
+
+      #ブックマークした本以外の本のタグ
+      book_tags = book.tags
+
+      # 類似度の計算(ブックマークした本のタグ, ブックマークした本以外の本のタグ)
+      similarity = calculate_similarity(bookmarked_tags, book_tags)
+
+      recommended_books << { book: book, similarity: similarity }
+    end
+
+    # 類似度で降順ソート
+    recommended_books.sort_by! { |b| b[:similarity] }.reverse!
+    # 上位5件の本のリストを返す
+    recommended_books.take(5).map { |b| b[:book] }
+  end
+
+  # タグの類似度を計算するメソッド
+  def self.calculate_similarity(bookmarked_tags, book_tags)
+    # タグリストが空の場合は類似度を0とする
+    return 0 if bookmarked_tags.empty? || book_tags.empty?
+
+    #共通タグの取得
+    common_tags = bookmarked_tags & book_tags
+    # 共通タグの数をもとに共通タグの割合を算出し類似度を計算
+    similarity = common_tags.size.to_f / (bookmarked_tags.size + book_tags.size - common_tags.size)
+
+    similarity
+  end
+
+  # ユーザーがブックマークした本のタグを分析し、違う種類のタグを持つ本を推薦するメソッド
+  def self.recommend_books_with_different_tags(user)
+    # ユーザーがブックマークした本の取得
+    bookmarked_books = user.bookmarks.includes(:book).map(&:book)
+    # ブックマークした本のタグの収集（重複を除く）
+    bookmarked_tags = bookmarked_books.flat_map(&:tags).uniq
+    # ブックマークした本のタグ以外のタグを持つ本を取得
+    recommended_books = Book.joins(:tags).where.not(tags: { id: bookmarked_tags.to_a.map(&:id) }).distinct
+    recommended_books
+  end
 end

@@ -1,0 +1,27 @@
+<h1>ブックマークしたものから類似されたおすすめ本</h1>
+<div class="flex flex-wrap justify-center">
+  <% @recommend_books&.each do |book| %>
+    <% book.tags do |tag| %>
+      <div class="tag_name"><%= tag.name%></div>
+    <% end %>
+    <div class="outline m-3 p-4 card_book">
+      <%= book.title%><br>
+      <%= book.author%><br>
+      <%= image_tag(book.large_image_url) %>
+    </div>
+  <% end %>
+</div>
+
+<h1>あなたが選ぶいつもとは違うジャンルの本</h1>
+<div class="flex flex-wrap justify-center">
+  <% @recommend_books_with_different_tags&.each do |book| %>
+    <% book.tags do |tag| %>
+      <div class="tag_name"><%= tag.name%></div>
+    <% end %>
+    <div class="outline m-3 p-4 card_book">
+      <%= book.title%><br>
+      <%= book.author%><br>
+      <%= image_tag(book.large_image_url) %>
+    </div>
+  <% end %>
+</div>

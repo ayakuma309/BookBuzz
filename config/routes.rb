@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :search
       get :genres_search
       get :bookmarks
+      get :recommend
     end
     resource :bookmark, only: %i[create destroy]
   end
