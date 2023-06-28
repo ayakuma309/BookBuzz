@@ -2,6 +2,7 @@
   <%= image_tag(book.large_image_url) %>
   <%= link_to "編集", edit_admin_book_path(book) %>
   <%= link_to "削除", admin_book_path(book.isbn), data: { turbo_method: :delete , turbo_confirm: '削除しますか？'} %>
+  <br>
   <% if book.bookmarks.exists?%>
     ブックマーク数
     <p class="text-red-500">

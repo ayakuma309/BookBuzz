@@ -57,8 +57,8 @@ class BooksController < ApplicationController
     end
   end
 
-  def recommend
-    @recommend_books = Book.recommend_books(current_user)
+  def recommends
+    @recommend_books_with_same_tags = Book.recommend_books(current_user)
     @recommend_books_with_different_tags = Book.recommend_books_with_different_tags(current_user)
   end
 
