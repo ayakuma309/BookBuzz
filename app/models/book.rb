@@ -90,6 +90,6 @@ class Book < ApplicationRecord
     bookmarked_tags = bookmarked_books.flat_map(&:tags).uniq
     # ブックマークした本のタグ以外のタグを持つ本を取得
     recommended_books = Book.joins(:tags).where.not(tags: { id: bookmarked_tags.to_a.map(&:id) }).distinct
-    recommended_books
+    recommended_books.limit(5)
   end
 end
