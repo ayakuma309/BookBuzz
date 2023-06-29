@@ -2,7 +2,7 @@ class Admin::BooksController < Admin::BaseController
   before_action :set_book, only: %i[edit update destroy]
 
   def index
-    @books = Book.includes(:tags)
+    @books = Book.includes(:tags).order(created_at: :desc).page(params[:page])
   end
 
   def edit; end
