@@ -8,5 +8,12 @@
       <%= recommend.author%>
     </div>
     <%= simple_format(recommend.item_caption) %>
+    <div class="flex justify-end">
+      <% if current_user %>
+        <div class="flex items-center">
+          <%= render 'bookmark_button', { book: recommend } %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
