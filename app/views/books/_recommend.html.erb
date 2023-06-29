@@ -1,0 +1,12 @@
+<div class="flex justify-center mb-5 p-4 card_book">
+  <div class="mr-5 shadow-md">
+    <%= image_tag(recommend.large_image_url) %>
+  </div>
+  <div class="w-96">
+    <div class="flex justify-between items-center">
+      <%= recommend.title%><br>
+      <%= recommend.author%>
+    </div>
+    <%= simple_format(recommend.item_caption) %>
+  </div>
+</div>

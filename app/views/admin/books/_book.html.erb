@@ -1,15 +1,17 @@
-<tr>
-  <td><%= image_tag(book.large_image_url) %></td>
-  <td><%= book.title %></td>
-  <td>
-    <%= book.author %>
-  </td>
-  <td>
-    <%= link_to "削除", admin_book_path(book.isbn), data: { turbo_method: :delete , turbo_confirm: '削除しますか？'} %>
-  </td>
-  <td>
-    <%if book.bookmarks.exists?%>
+<div class="outline m-3 p-4 card_book">
+  <%= image_tag(book.large_image_url) %>
+  <%= link_to "編集", edit_admin_book_path(book) %>
+  <%= link_to "削除", admin_book_path(book.isbn), data: { turbo_method: :delete , turbo_confirm: '削除しますか？'} %>
+  <br>
+  <% if book.bookmarks.exists?%>
+    ブックマーク数
+    <p class="text-red-500">
       <%= book.bookmarks.count %>
-    <% end %>
-  </td>
-</tr>
+    </p>
+  <% end %>
+  <br>
+  <% book.tags.each do |tag| %>
+    <div class="tag_name"><%= tag.name%></div>
+  <% end %>
+  <br>
+</div>

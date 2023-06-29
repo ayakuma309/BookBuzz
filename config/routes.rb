@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :search
       get :genres_search
       get :bookmarks
+      get :recommends
     end
     resource :bookmark, only: %i[create destroy]
   end
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
     post 'login', to: 'user_sessions#create'
     delete 'logout', to: 'user_sessions#destroy'
 
-    resources :books, param: :isbn, only: %i[index destroy]
+    resources :books, param: :isbn, only: %i[index edit update destroy]
+    resources :tags, only: [:index, :create, :edit, :update, :destroy]
   end
 end

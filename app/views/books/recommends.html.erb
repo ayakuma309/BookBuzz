@@ -1,0 +1,33 @@
+<div class="container mx-auto px-4">
+  <div class="my-8">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold mb-2">
+        あなただけのおすすめの本
+      </h1>
+      <p class="my-2">
+        ブックマーク情報をもとにおすすめを表示してます<br>
+        <small>(ブックマークされてない方はランダムで表示されます)</small>
+      </p>
+    </div>
+    <div class="w-full my-3 flex flex-col justify-center">
+      <div class="w-full my-3 flex flex-col justify-center">
+        <%= render partial: "recommend", collection: @recommend_books_with_same_tags %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold">
+        違うジャンルの本はいかがですか?
+      </h1>
+      <p class="my-2" >ブックマーク情報からあなたが選択してないジャンルの本を表示してます</p>
+    </div>
+    <div class="w-full my-3 flex flex-col justify-center">
+      <%= render partial: "recommend",  collection: @recommend_books_with_different_tags %>
+    </div>
+  </div>
+</div>
+<div class='container mx-auto flex justify-center items-center p-3'>
+  <%= link_to '戻る', root_path, class: 'btn btn-sm outline' %>
+</div>

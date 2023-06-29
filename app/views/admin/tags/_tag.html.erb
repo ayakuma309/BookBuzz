@@ -1,0 +1,7 @@
+<tr>
+  <td><%= tag.name %></td>
+  <td><%= link_to "編集", edit_admin_tag_path(tag), class:"btn btn-success rounded-pill" %></td>
+  <td>
+    <%= link_to "削除",  admin_tag_path(tag), data: { turbo_method: :delete , turbo_confirm: '削除しますか？'} %>
+  </td>
+</tr>

@@ -1,0 +1,26 @@
+<div class="w-96 mx-auto">
+  <%= @book.isbn %><br/>
+  <%= @book.title %><br/>
+  <%= @book.author %><br/>
+  <%= @book.sales_date %><br/>
+  <%= image_tag(@book.large_image_url) %><br/>
+  <%= @book.item_caption %><br/>
+  <div>
+    <%= form_with model: @book, url: admin_book_path, local: false, data: { controller: "books" } do |f| %>
+      <%= f.hidden_field :isbn, value: @book.isbn %>
+      <%= f.hidden_field :title, value: @book.title %>
+      <%= f.hidden_field :author, value: @book.author %>
+      <%= f.hidden_field :sales_date, value: @book.sales_date %>
+      <%= f.hidden_field :large_image_url, value: @book.large_image_url %>
+      <%= f.hidden_field :item_url, value: @book.item_url %>
+      <%= f.hidden_field :item_caption, value: @book.item_caption %>
+      <div class="text-center mx-auto">
+        <%= f.collection_select :tag_ids, Tag.all, :id, :name, { include_blank: true }, {data: { controller: "select" }, controller: "select", id: 'select', class: 'input input-accent p-1', multiple: true, autocomplete: 'off' } %>
+      </div>
+      <%= f.button "登録", class: "rounded border border-gray-600 bg-gray-600 mr-2 p-1 font-medium text-white hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring active:text-blue-500 mt-auto sm:m-auto md:mx-auto lg:mx-0", data: { disable_with: "送信中..." } %>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to '本一覧へ', admin_books_path, class: "btn outline"%>
+  </div>
+</div>

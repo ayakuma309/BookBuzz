@@ -57,6 +57,11 @@ class BooksController < ApplicationController
     end
   end
 
+  def recommends
+    @recommend_books_with_same_tags = Book.recommend_books(current_user)
+    @recommend_books_with_different_tags = Book.recommend_books_with_different_tags(current_user)
+  end
+
   private
   def book_params
     params.permit(:title, :author, :sales_date, :large_image_url, :item_url, :isbn, :item_caption)
