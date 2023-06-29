@@ -25,10 +25,10 @@ class Admin::TagsController < Admin::BaseController
 
   def update
     if @tag.update(tag_params)
-      flash[:notice] = "更新しました"
+      flash[:notice] = '更新しました'
       redirect_to admin_tags_path
     else
-      flash[:alert] = "入力してください"
+      flash[:alert] = '入力してください'
       render :edit
     end
   end
@@ -36,7 +36,7 @@ class Admin::TagsController < Admin::BaseController
   def destroy
     @tag.destroy
     @tags = Tag.all
-    flash[:notice] = "削除しました"
+    flash[:notice] = '削除しました'
     redirect_to admin_tags_path
   end
 

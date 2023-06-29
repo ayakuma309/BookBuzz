@@ -47,7 +47,6 @@ class Book < ApplicationRecord
     # ブックマークした本のタグの収集（重複を除く）
     bookmarked_tags = bookmarked_books.flat_map(&:tags).uniq
 
-
     recommended_books = []
     all_books = Book.all # 全ての本の取得
 
