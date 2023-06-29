@@ -4,8 +4,15 @@
   </div>
   <div class="w-96">
     <div class="flex justify-between items-center">
-      <%= recommend.title%><br>
-      <%= recommend.author%>
+      <div>
+        <%= recommend.title%><br>
+        <%= recommend.author%>
+      </div>
+      <% if current_user %>
+        <div class="flex items-center">
+          <%= render 'bookmark_button', { book: recommend } %>
+        </div>
+      <% end %>
     </div>
     <%= simple_format(recommend.item_caption) %>
   </div>

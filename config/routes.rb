@@ -26,4 +26,5 @@ Rails.application.routes.draw do
     resources :books, param: :isbn, only: %i[index edit update destroy]
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
   end
+  get '*path', to: 'application#render_404'
 end
