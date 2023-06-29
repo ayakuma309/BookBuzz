@@ -42,31 +42,40 @@ class Book < ApplicationRecord
 
   # ユーザーがブックマークした本のタグを分析し、同じ種類のタグを持つ本を推薦するメソッド
   def self.recommend_books(user)
-    # ユーザーがブックマークした本の配列を取得
-    bookmarked_books = user.bookmarks.includes(:book).map(&:book)
-    # ブックマークした本のタグの収集（重複を除く）
-    bookmarked_tags = bookmarked_books.flat_map(&:tags).uniq
+    bookmarked_books = get_bookmarked_books(user)
+    bookmarked_tags = get_bookmarked_tags(bookmarked_books)
+    recommended_books = find_similar_books(bookmarked_books, bookmarked_tags)
+    return get_top_recommendations(recommended_books)
+  end
 
+  # ユーザーがブックマークした本の配列を取得
+  def self.get_bookmarked_books(user)
+    user.bookmarks.includes(:book).map(&:book)
+  end
+  # ブックマークした本のタグの収集（重複を除く）
+  def self.get_bookmarked_tags(bookmarked_books)
+    bookmarked_books.flat_map(&:tags).uniq
+  end
+
+  # 類似度で降順ソート
+  def self.find_similar_books(bookmarked_books, bookmarked_tags)
     recommended_books = []
-    all_books = Book.all # 全ての本の取得
+    all_books = Book.all
 
     all_books.each do |book|
-      next if bookmarked_books.include?(book) # ブックマークした本は除外
-
-      #ブックマークした本以外の本のタグ
+      next if bookmarked_books.include?(book)
       book_tags = book.tags
-
-      # 類似度の計算(ブックマークした本のタグ, ブックマークした本以外の本のタグ)
       similarity = calculate_similarity(bookmarked_tags, book_tags)
-
       recommended_books << { book: book, similarity: similarity }
     end
-
-    # 類似度で降順ソート
     recommended_books.sort_by! { |b| b[:similarity] }.reverse!
-    # 上位5件の本のリストを返す
+  end
+
+  # 上位5件の本のリストを返す
+  def self.get_top_recommendations(recommended_books)
     recommended_books.take(5).map { |b| b[:book] }
   end
+
 
   # タグの類似度を計算するメソッド
   def self.calculate_similarity(bookmarked_tags, book_tags)
@@ -83,12 +92,12 @@ class Book < ApplicationRecord
 
   # ユーザーがブックマークした本のタグを分析し、違う種類のタグを持つ本を推薦するメソッド
   def self.recommend_books_with_different_tags(user)
-    # ユーザーがブックマークした本の取得
-    bookmarked_books = user.bookmarks.includes(:book).map(&:book)
-    # ブックマークした本のタグの収集（重複を除く）
-    bookmarked_tags = bookmarked_books.flat_map(&:tags).uniq
-    # ブックマークした本のタグ以外のタグを持つ本を取得
-    recommended_books = Book.joins(:tags).where.not(tags: { id: bookmarked_tags.to_a.map(&:id) }).distinct
-    recommended_books.limit(5)
+    bookmarked_books = get_bookmarked_books(user)
+    bookmarked_tags = get_bookmarked_tags(bookmarked_books)
+    # 1. BookとTagのモデルを結合(条件はブックマークしたタグ以外のタグのid)
+    # 2. ランダムで5件取得
+    recommended_books = Book.joins(:tags).where.not(tags: { id: bookmarked_tags.to_a.map(&:id) })
+                                      .order(Arel.sql('RANDOM()'))
+                                      .limit(5)
   end
 end

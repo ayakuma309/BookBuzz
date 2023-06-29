@@ -10,16 +10,16 @@ class Admin::BooksController < Admin::BaseController
   def update
     @book.assign_attributes(book_params)
     if @book.save_with(tag_ids)
-      redirect_to admin_books_path, success: t('defaults.message.success', word: t('defaults.update'))
+      redirect_to admin_books_path, success: t('books.update.success')
     else
-      flash.now[:danger] = t('defaults.message.danger', word: t('defaults.update'))
+      flash.now[:danger] = t('defaults.message.not_created')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @book.delete
-    redirect_to admin_books_path, danger: t('admin.books.destroy.success'), status: :see_other
+    redirect_to admin_books_path, danger: t('books.destroy.success'), status: :see_other
   end
 
   private
