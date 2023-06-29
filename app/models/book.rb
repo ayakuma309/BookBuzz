@@ -87,8 +87,10 @@ class Book < ApplicationRecord
     bookmarked_books = user.bookmarks.includes(:book).map(&:book)
     # ブックマークした本のタグの収集（重複を除く）
     bookmarked_tags = bookmarked_books.flat_map(&:tags).uniq
-    # ブックマークした本のタグ以外のタグを持つ本を取得
-    recommended_books = Book.joins(:tags).where.not(tags: { id: bookmarked_tags.to_a.map(&:id) }).distinct
-    recommended_books.limit(5)
+    # 1. BookとTagのモデルを結合(条件はブックマークしたタグ以外のタグのid)
+    # 2. ランダムで5件取得
+    recommended_books = Book.joins(:tags).where.not(tags: { id: bookmarked_tags.to_a.map(&:id) })
+                                      .order(Arel.sql('RANDOM()'))
+                                      .limit(5)
   end
 end
