@@ -10,12 +10,12 @@ class Admin::TagsController < Admin::BaseController
     @tags = Tag.all
     tag = Tag.new(tag_params)
     if tag.save
-      flash[:notice] = '新規登録しました'
+      flash[:notice] = t('defaults.message.created')
       redirect_to admin_tags_path
     else
       @tag = Tag.new
       @tags = Tag.all
-      flash[:alert] = '入力してください'
+      flash[:alert] = t('defaults.message.not_created')
       render :index
     end
   end
@@ -25,10 +25,10 @@ class Admin::TagsController < Admin::BaseController
 
   def update
     if @tag.update(tag_params)
-      flash[:notice] = '更新しました'
+      flash[:notice] = t('defaults.message.updated')
       redirect_to admin_tags_path
     else
-      flash[:alert] = '入力してください'
+      flash[:alert] = t('defaults.message.not_updated')
       render :edit
     end
   end
@@ -36,7 +36,7 @@ class Admin::TagsController < Admin::BaseController
   def destroy
     @tag.destroy
     @tags = Tag.all
-    flash[:notice] = '削除しました'
+    flash[:notice] = t('defaults.message.deleted')
     redirect_to admin_tags_path
   end
 
