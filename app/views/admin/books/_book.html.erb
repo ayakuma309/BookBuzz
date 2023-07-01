@@ -11,7 +11,9 @@
   <% end %>
   <br>
   <% book.tags.each do |tag| %>
-    <div class="tag_name"><%= tag.name%></div>
+    <div class="tag_name">
+      <%= link_to tag.name, admin_books_path(tag_name: tag.name) %>
+    </div>
   <% end %>
   <br>
 </div>

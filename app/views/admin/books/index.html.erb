@@ -1,5 +1,11 @@
 <div class="my-3">
   <h1 class="text-xl font-bold text-center">本一覧</h1>
+  <div class="text-center">
+    <%= form_with url: admin_books_path, method: :get, local: true do |f| %>
+      <%= f.text_field :search %>
+      <%= f.submit '検索' %>
+    <% end %>
+  </div>
   <div class="w-75 m-2 flex justify-center items-center flex-wrap">
     <%= render @books%>
   </div>
