@@ -2,7 +2,14 @@ class Admin::BooksController < Admin::BaseController
   before_action :set_book, only: %i[edit update destroy]
 
   def index
-    @books = Book.includes(:tags).order(created_at: :desc).page(params[:page])
+    @books = if params[:search].present?
+              Book.where("title LIKE ?", "%#{params[:search]}%").page(params[:page])
+            elsif params[:tag_name].present?
+              tag = Tag.find_by(name: params[:tag_name])
+              tag.books.includes(:tags).order(created_at: :desc).page(params[:page])
+            else
+              Book.includes(:tags).order(created_at: :desc).page(params[:page])
+            end
   end
 
   def edit; end
