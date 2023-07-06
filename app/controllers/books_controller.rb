@@ -16,7 +16,6 @@ class BooksController < ApplicationController
     end
   end
 
-
   def create
     @book = Book.new(book_params)
     respond_to do |format|

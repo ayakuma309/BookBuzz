@@ -3,7 +3,7 @@ class Admin::BooksController < Admin::BaseController
 
   def index
     @books = if params[:search].present?
-              Book.where("title LIKE ?", "%#{params[:search]}%").page(params[:page])
+              Book.where('title LIKE ?', "%#{params[:search]}%").page(params[:page])
             elsif params[:tag_name].present?
               tag = Tag.find_by(name: params[:tag_name])
               tag.books.includes(:tags).order(created_at: :desc).page(params[:page])
