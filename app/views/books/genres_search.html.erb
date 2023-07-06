@@ -2,4 +2,8 @@
   <%@books.each do |book|%>
     <%= render "recommend_books", book: book %>
   <% end %>
+
+  <div class='container mx-auto flex justify-center items-center p-3'>
+    <%= link_to '戻る', root_path, class: 'btn btn-sm outline' %>
+  </div>
 </div>

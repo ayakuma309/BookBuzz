@@ -76,7 +76,6 @@ class Book < ApplicationRecord
     recommended_books.take(5).map { |b| b[:book] }
   end
 
-
   # タグの類似度を計算するメソッド
   def self.calculate_similarity(bookmarked_tags, book_tags)
     # タグリストが空の場合は類似度を0とする
