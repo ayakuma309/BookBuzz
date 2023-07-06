@@ -1,0 +1,16 @@
+<div class="container mx-auto px-4">
+  <div class="my-8">
+    <h1 class="text-3xl font-bold mb-2">ジャンル一覧</h1>
+    <div class="flex flex-wrap mt-5">
+      <% @genres&.each do |genre| %>
+        <%= link_to genres_search_books_path(genre_id: genre.params["booksGenreId"]) do %>
+          <p class="m-1 select_button"><%=  genre.params["booksGenreName"] %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='container mx-auto flex justify-center items-center p-3'>
+    <%= link_to '違う方法で探す', root_path, class: 'btn btn-sm outline' %>
+  </div>
+</div>
