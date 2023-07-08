@@ -1,23 +1,29 @@
 <div class="container mx-auto px-4">
-  <div class="my-8">
+  <h1 class="text-5xl font-bold mb-2">あなたはボタンを押すだけ。</h1>
+  <div class="mt-24 mb-8">
     <h1 class="text-3xl font-bold mb-2">ジャンルから探す</h1>
     <%= link_to recommend_genre_path, class: "inline-block mt-5 select_button" do %>
       <p class="m-1">ジャンル一覧から選択してください</p>
     <% end %>
   </div>
 
-  <div class="mt-8">
+  <div class="mt-10">
     <h1 class="text-3xl font-bold">本日のおすすめから探す</h1>
     <%= link_to books_path, class: "inline-block mt-5 select_button" do %>
       <p class="m-1">ランダム3選をあなたに贈ります</p>
     <% end %>
   </div>
 
-  <div class="mt-8">
+  <div class="mt-10">
     <h1 class="text-3xl font-bold">あなただけの部屋</h1><br>
     <small>会員登録が必要です</small><br>
-    <%= link_to recommends_books_path, class: "inline-block mt-5 select_button" do %>
+    <%= link_to recommends_books_path, class: "inline-block mt-2 select_button" do %>
       <p class="m-1">あなただけに用意しました</p>
+    <% end %>
+  </div>
+  <div class="mt-3">
+    <%= link_to bookmarks_books_path, class: "inline-block mt-5 select_button" do %>
+      <p class="m-1">ブックマークした本たち</p>
     <% end %>
   </div>
 </div>
