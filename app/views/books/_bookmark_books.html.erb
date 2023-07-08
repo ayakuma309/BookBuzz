@@ -9,5 +9,10 @@
       <%= render 'bookmark_button', { book: bookmark_books.book } %>
     </div>
     <%= simple_format(bookmark_books.book.item_caption) %>
+    <%= link_to book_path(isbn: bookmark_books.book.isbn),  class: "flex items-center" do %>
+      <button class="bg-gray-500 text-white py-2 px-4 m-2">
+        詳細へ
+      </button>
+    <% end %>
   </div>
 </div>
