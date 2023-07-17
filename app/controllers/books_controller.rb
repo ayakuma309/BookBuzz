@@ -55,6 +55,7 @@ class BooksController < ApplicationController
   def recommends
     @recommend_books_with_same_tags = Book.recommend_books(current_user)
     @recommend_books_with_different_tags = Book.recommend_books_with_different_tags(current_user)
+    @twitter_text = Book.generate_twitter_links(@recommend_books_with_same_tags)
   end
 
   private
