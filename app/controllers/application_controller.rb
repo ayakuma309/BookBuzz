@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, with: :render_500
 
   def render_404
-    render template: "errors/404", status: :not_found
+    render template: 'errors/404', status: :not_found
   end
 
   def render_500(exception = nil)
-    render template: "errors/500", status: :internal_server_error
+    render template: 'errors/500', status: :internal_server_error
   end
 
   #フラッシュメッセージ
