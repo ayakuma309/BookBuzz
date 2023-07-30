@@ -60,6 +60,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'webdrivers'
+  gem 'faker'
 end
 
 group :development do
