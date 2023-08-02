@@ -75,6 +75,13 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'simplecov', require: false
+end
+
 gem 'annotate'
 gem 'dotenv-rails'
 gem 'enum_help'
@@ -87,4 +94,3 @@ gem 'sorcery'
 gem 'dockerfile-rails', '>= 1.5', :group => :development
 
 gem 'meta-tags'
-gem 'simplecov', require: false, group: :test
