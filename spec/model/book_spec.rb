@@ -143,6 +143,39 @@ RSpec.describe Book, type: :model do
         expect(recommended_books[0][:similarity]).to eq(0.7)
       end
     end
+
+    # 上位5件の本のリストを返す
+    describe 'get_top_recommendationsメソッド' do
+      let!(:book1) { create(:book) }
+      let!(:book2) { create(:book, isbn: '56789') }
+      let!(:book3) { create(:book, isbn: '02345') }
+      let!(:book4) { create(:book, isbn: '43536') }
+      let!(:book5) { create(:book, isbn: '54454') }
+      let!(:book6) { create(:book, isbn: '65677') }
+
+      let(:recommended_books) do
+        [
+          { book: book1, similarity: 0.9 },
+          { book: book2, similarity: 0.7 },
+          { book: book3, similarity: 0.5 },
+          { book: book4, similarity: 0.8 },
+          { book: book5, similarity: 0.6 },
+          { book: book6, similarity: 0.4 }
+        ]
+      end
+
+      it '上位5件の本のリストを返す' do
+        # テスト対象のメソッドを呼び出す
+        top_recommendations = Book.get_top_recommendations(recommended_books)
+
+        # アサーション
+        expect(top_recommendations).to be_an(Array)
+        expect(top_recommendations.length).to eq(5)
+        expect(top_recommendations).to include(book1, book2, book4, book3, book5)
+        expect(top_recommendations).not_to include(book6)
+      end
+    end
+
     describe 'calculate_similarityメソッド' do
       let!(:tag1) { create(:tag) }
       let!(:tag2) { create(:tag) }
