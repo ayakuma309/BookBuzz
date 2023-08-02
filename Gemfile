@@ -59,7 +59,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
-  gem 'webdrivers'
+
   gem 'faker'
 end
 
