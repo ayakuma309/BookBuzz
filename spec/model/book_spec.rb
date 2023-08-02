@@ -121,6 +121,28 @@ RSpec.describe Book, type: :model do
       end
     end
 
+    describe 'find_similar_booksメソッド' do
+      let!(:user) { create(:user) }
+      let!(:book1) { create(:book) }
+      let!(:book2) { create(:book, isbn: '56789') }
+      let!(:tag1) { create(:tag) }
+      let!(:tag2) { create(:tag) }
+
+      it 'ブックマークしたタグと類似度が高い本を返す' do
+        # テストデータの設定
+        bookmarked_books = [book1]
+        bookmarked_tags = [tag1]
+        # 類似度の計算結果
+        allow(Book).to receive(:calculate_similarity).and_return(0.7, 0.5)
+
+        recommended_books = Book.find_similar_books(bookmarked_books, bookmarked_tags)
+
+        expect(recommended_books).to be_an(Array)
+        expect(recommended_books.length).to eq(1)
+        expect(recommended_books[0][:book]).to eq(book2)
+        expect(recommended_books[0][:similarity]).to eq(0.7)
+      end
+    end
     describe 'calculate_similarityメソッド' do
       let!(:tag1) { create(:tag) }
       let!(:tag2) { create(:tag) }
