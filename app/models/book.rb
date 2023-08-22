@@ -95,8 +95,9 @@ class Book < ApplicationRecord
     bookmarked_tags = get_bookmarked_tags(bookmarked_books)
     # 1. BookとTagのモデルを結合(条件はブックマークしたタグ以外のタグのid)
     # 2. ランダムで5件取得
-    recommended_books = Book.joins(:tags).where.not(tags: { id: bookmarked_tags.to_a.map(&:id) })
-                                      .order(Arel.sql('RANDOM()'))
-                                      .limit(5)
+    recommended_books = Book.joins(:tags)
+                            .where.not(tags: { id: bookmarked_tags.to_a.map(&:id) })
+                            .order(Arel.sql('RANDOM()'))
+                            .limit(5)
   end
 end
