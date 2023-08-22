@@ -21,10 +21,10 @@ RSpec.describe Book, type: :model do
         described_class.reflect_on_association(target)
       end
 
-      context "Bookmarkモデルとのアソシエーション" do
+      context 'Bookmarkモデルとのアソシエーション' do
         let(:target) { :bookmarks }
 
-        it "Bookmarkとの関連付けはhas_manyであること" do
+        it 'Bookmarkとの関連付けはhas_manyであること' do
           expect(association.macro).to eq :has_many
         end
       end
