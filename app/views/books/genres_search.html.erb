@@ -1,6 +1,6 @@
-<div class="flex flex-wrap">
-  <%@books.each do |book|%>
-    <%= render "recommend_books", book: book %>
+<div class="flex flex-wrap justify-center">
+  <% @books.each do |book|%>
+    <%= render "recommend_author_books", book: book %>
   <% end %>
 
   <div class='container mx-auto flex justify-center items-center p-3'>
