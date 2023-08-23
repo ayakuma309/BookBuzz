@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
     it '空欄の場合はエラーが出る' do
       user = FactoryBot.build(:user, email: '')
       user.valid?
-      expect(user.errors[:email]).to include("を入力してください")
+      expect(user.errors[:email]).to include('を入力してください')
     end
 
     it '同じアドレスは無効である' do
@@ -45,9 +45,8 @@ RSpec.describe User, type: :model do
     it 'パスワードがない場合はエラーが出る' do
       user = FactoryBot.build(:user, password: '')
       user.valid?
-      expect(user.errors[:password]).to include("を入力してください")
+      expect(user.errors[:password]).to include('を入力してください')
     end
-
 
     it 'パスワードが短すぎ場合、無効である' do
       user = FactoryBot.build(:user, password: 'a')
@@ -58,13 +57,13 @@ RSpec.describe User, type: :model do
     it 'パスワードが短すぎ(６文字未満)の場合はエラーが出る' do
       user = FactoryBot.build(:user, password: 'a')
       user.valid?
-      expect(user.errors[:password]).to include("は6文字以上で入力してください")
+      expect(user.errors[:password]).to include('は6文字以上で入力してください')
     end
 
     it 'パスワードが不一致' do
       user = FactoryBot.build(:user, password: 'password1',password_confirmation: 'password2')
       user.valid?
-      expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
+      expect(user.errors[:password_confirmation]).to include('とパスワードの入力が一致しません')
     end
 
   describe '各モデルとのアソシエーション' do

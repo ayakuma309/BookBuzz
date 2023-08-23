@@ -59,16 +59,20 @@ class Book < ApplicationRecord
 
   # 類似度で降順ソート
   def self.find_similar_books(bookmarked_books, bookmarked_tags)
-    recommended_books = []
     all_books = Book.all
+    #rejectメソッドでブックマークしてる本は除外する
+    #mapメソッドで各本の類似度を計算し、結果をハッシュとして格納。
+    recommended_books = all_books
+                          .reject { |book| bookmarked_books.include?(book) }
+                          .map do |book|
+                            book_tags = book.tags
+                            similarity = calculate_similarity(bookmarked_tags, book_tags)
+                            { book: book, similarity: similarity }
+                          end
+                          .sort_by { |b| b[:similarity] }
+                          .reverse!
 
-    all_books.each do |book|
-      next if bookmarked_books.include?(book)
-      book_tags = book.tags
-      similarity = calculate_similarity(bookmarked_tags, book_tags)
-      recommended_books << { book: book, similarity: similarity }
-    end
-    recommended_books.sort_by! { |b| b[:similarity] }.reverse!
+    recommended_books
   end
 
   # 上位5件の本のリストを返す
@@ -95,8 +99,10 @@ class Book < ApplicationRecord
     bookmarked_tags = get_bookmarked_tags(bookmarked_books)
     # 1. BookとTagのモデルを結合(条件はブックマークしたタグ以外のタグのid)
     # 2. ランダムで5件取得
-    recommended_books = Book.joins(:tags).where.not(tags: { id: bookmarked_tags.to_a.map(&:id) })
-                                      .order(Arel.sql('RANDOM()'))
-                                      .limit(5)
+    recommended_books = Book
+                          .joins(:tags)
+                          .where.not(tags: { id: bookmarked_tags.to_a.map(&:id) })
+                          .order(Arel.sql('RANDOM()'))
+                          .limit(5)
   end
 end
