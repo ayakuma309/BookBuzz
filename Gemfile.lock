@@ -127,6 +127,8 @@ GEM
     faraday (2.7.7)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
     faraday-net_http (3.0.2)
     foreman (0.87.2)
     globalid (1.1.0)
@@ -174,6 +176,7 @@ GEM
     minitest (5.18.1)
     msgpack (1.7.1)
     multi_xml (0.6.0)
+    multipart-post (2.3.0)
     net-imap (0.3.6)
       date
       net-protocol
@@ -297,6 +300,9 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
+    ruby-openai (5.1.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -385,6 +391,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rails
+  ruby-openai
   selenium-webdriver
   simplecov
   sorcery

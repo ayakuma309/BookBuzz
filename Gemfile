@@ -94,3 +94,4 @@ gem 'sorcery'
 gem 'dockerfile-rails', '>= 1.5', :group => :development
 
 gem 'meta-tags'
+gem "ruby-openai"
