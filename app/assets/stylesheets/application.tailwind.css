@@ -118,6 +118,7 @@ svg {
 
 
 .select_button{
+  width: 500px;
   padding: 1.5em 5em;
   background: #efefef;
   border: none;
