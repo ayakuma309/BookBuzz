@@ -1,0 +1,31 @@
+<div class="m-2 mx-auto text-center">
+  <div class="flex">
+    <div>
+      <div class="bg-blue-300 px-2 rounded-md">好きなテーマを入力してください</div>
+      <p>3冊のおすすめ本が返ってきます</p>
+    </div>
+  </div>
+  <div class="border-t"></div>
+  <%= form_with(url: chats_path, method: "get") do |f| %>
+    <div class="w-full flex m-2">
+      <%= text_field_tag :books, nil, class: "input input-bordered input-primary flex-grow m-2", placeholder: "心あたたまる" %>
+      <%= f.submit "送信", class: 'btn submit-button m-2 mr-4' %>
+      </div>
+  <% end %>
+  <% if @response %>
+    <div class="w-full">
+      <div class="flex flex-col justify-between items-center">
+        <div><%= @response %></div>
+      </div>
+    </div>
+    <div class="flex justify-center items-center">
+      <%= link_to "https://twitter.com/share?url=#{request.base_url}&text=#{@response}&hashtags=おすすめ本", target: '_blank', class: 'mx-4 twitter-share-button', data: {show_count: 'false'} do %>
+        <div
+          class="text-white font-bold rounded-full mr-5 bg-black py-2 px-3 w-10 text-center"
+        >
+          x
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

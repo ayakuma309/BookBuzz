@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resource :bookmark, only: %i[create destroy]
   end
 
+  resources :chats, only: %i[index]
   #管理者
   namespace :admin do
     root to: 'dashboards#index'
